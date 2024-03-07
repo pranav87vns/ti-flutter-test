@@ -7,7 +7,7 @@ import 'package:chrconnecthpdraft/feature/main/bloc/main_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
-
+import '../onboarding/onboarding_screen.dart';
 import '../home/home_screen_alternative.dart';
 
 class MainScreen extends StatefulWidget {
@@ -77,6 +77,30 @@ class _MainScreenState extends State<MainScreen> {
                     fullDashboard: !_mainBloc.state.defaultVersion),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (context) {
+                        return FractionallySizedBox(
+                          heightFactor: 1,
+                          child: OnboardingScreen(),
+                        );
+                      });
+                },
+                style: Theme.of(context).textButtonTheme.style?.copyWith(
+                      backgroundColor: MaterialStatePropertyAll(
+                          Theme.of(context).colorScheme.background),
+                      foregroundColor: MaterialStatePropertyAll(
+                          Theme.of(context).colorScheme.primary),
+                    ),
+                child: const Text('Show onboarding'),
+              ),
+            )
           ],
         ),
       ),
